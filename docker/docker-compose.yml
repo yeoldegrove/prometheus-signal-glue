@@ -1,0 +1,21 @@
+version: '3'
+services:
+  alertmanager:
+    image: prom/alertmanager
+    volumes:
+      - ./config:/prometheus
+      - ./data/alertmanager:/data
+    command:
+      - '--config.file=/prometheus/alertmanager.yml'
+      - '--storage.path=/data'
+      - '--log.level=debug'
+      - '--cluster.listen-address='
+    ports:
+      - 9093:9093
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.57.0/24

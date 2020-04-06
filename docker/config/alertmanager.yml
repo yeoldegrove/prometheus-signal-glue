@@ -1,0 +1,15 @@
+global:
+
+route:
+  receiver: "signal"
+  group_by: ['alertname']
+  group_wait:      1s
+  group_interval:  1s
+  repeat_interval: 15s
+
+receivers:
+- name: "signal"
+  webhook_configs:
+  - url: 'http://192.168.1.43:5000/alerts'
+    send_resolved: true
+    http_config:
