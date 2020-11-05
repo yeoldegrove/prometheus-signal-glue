@@ -20,8 +20,18 @@ def send_alerts(alerts):
         alerts {dict} -- Prometheus Alertmanager webhook
     """
 
-    # TODO: magically transform alerts to a readable message
-    send_message(str(alerts["alerts"]), SIGNAL_NUMBER, recipients=SIGNAL_RECEIPIENTS)
+    for a in alerts["alerts"]:
+        message = "Status: " + a['status'] + "\n" + \
+          "Severity: " + a['labels']['severity'] + "\n" + \
+          "Alertname: " + a['labels']['alertname'] + "\n" + \
+          "Start: " + a['startsAt'] + "\n" + \
+          "End: " + a['endsAt'] + "\n" + \
+          "Hostgroup: " + a['labels']['group'] + "\n" + \
+          "Host: " + a['labels']['instance'] + "\n" + \
+          "Summary: " + a['annotations']['summary'] + "\n" + \
+          "Description: " + a['annotations']['description']
+
+        send_message(message, SIGNAL_NUMBER, recipients=SIGNAL_RECEIPIENTS)
 
 
 def send_message(message, number, recipients=[]):
