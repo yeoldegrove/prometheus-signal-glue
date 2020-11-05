@@ -6,11 +6,11 @@ verify_ssl = true
 [dev-packages]
 black = "*"
 pytest = "*"
-flaskr = "*"
 
 [packages]
 flask = "*"
 requests = "*"
+pyyaml = "*"
 
 [requires]
 python_version = "3.7"
