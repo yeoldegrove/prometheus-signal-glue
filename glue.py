@@ -47,7 +47,7 @@ def send_message(message, number, recipients=[]):
     response = requests.post(
         SIGNAL_URL,
         json={"message": message, "number": number, "recipients": recipients},
-        timeout=5,
+        timeout=30,
     )
 
 
