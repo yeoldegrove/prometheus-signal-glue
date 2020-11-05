@@ -1,0 +1,12 @@
+version: "3"
+services:
+  prometheus-signal-glue:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
+    environment:
+      SIGNAL_URL: "http://localhost:8080/v2/send"
+      SIGNAL_RECEIPIENTS: "group.XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+      SIGNAL_NUMBER: "+14999999999"
